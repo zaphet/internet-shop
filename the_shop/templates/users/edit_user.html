@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "Изменить пользователя" %}</title>
+</head>
+<body>
+    <h2>{% trans "Изменить пользователя" %} {{ user_id }}</h2>
+    <form method="post" action='/users/edit_user/'>
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">{% trans "Сохранить" %}</button>
+    </form>
+</body>
+</html>
+

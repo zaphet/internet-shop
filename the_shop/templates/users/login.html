@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Логин</title>
+</head>
+<body>
+<h2>Страница входа</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Войти</button>
+  <a class="ControlPanel-title" href="{% url 'app_users:restore_password' %}">Я не помню пароль.</a>
+</form>
+</body>
+</html>

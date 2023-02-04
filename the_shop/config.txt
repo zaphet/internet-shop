@@ -1,0 +1,1 @@
+[{"model": "app_shop.sitesettings", "pk": 1, "fields": {"site_url": "http://localhost:8000/", "title": "NoMegano", "cache": 86400, "delivery_price": 200, "free_delivery_from": 2000, "express_delivery_price": 500}}]

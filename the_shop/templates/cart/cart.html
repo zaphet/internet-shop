@@ -1,0 +1,76 @@
+{% extends 'main_template.html' %}
+
+{% block title %}
+  Cart
+{% endblock %}
+
+{% block middle %}
+  <div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">Корзина
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="{% url 'main' %}">home</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>Корзина</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% if cart %}
+      {% for item in cart %}
+            <div class="Cart-product">
+              <div class="Cart-block Cart-block_row">
+                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="{{ MEDIA_URL }}/{{ item.product.icon }}" ><img class="Cart-img" src=" {{ MEDIA_URL }}/{{ item.product.icon }}" /></a>
+                </div>
+                <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'app_shop:product_details' %}?product={{ item.product.id }}">{{ item.product.product_id.name }}</a>
+                  <div class="Cart-desc">{{ item.product.description }}
+                  </div>
+                </div>
+                <div class="Cart-block Cart-block_price">
+                  <div class="Cart-price">{{ item.price }}
+                  </div>
+                </div>
+              </div>
+              <div class="Cart-block Cart-block_row">
+                <div class="Cart-block Cart-block_seller">
+                  <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+
+                </div>
+                <div class="Cart-block Cart-block_amount">
+                  <div class="Cart-amount">
+                    <div class="Amount">
+
+                      <div class="Cart-block Cart-block_dec"><a class="Cart-delete" href="{% url 'app_cart:cart_add' %}?product={{ item.product.id }}&amount=-1"> - </a>
+                      </div>
+
+                      <div class="Cart-block"><a class="Cart-delete" > {{ item.quantity }} </a>
+                      </div>
+
+                      <div class="Cart-block Cart-block_inc"><a class="Cart-delete" href="{% url 'app_cart:cart_add' %}?product={{ item.product.id }}&amount=1"> + </a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="{% url 'app_cart:cart_remove' %}?product={{ item.product.id }}"><img src="{{ MEDIA_URL }}/assets/img/icons/card/delete.svg" alt="delete.svg"/></a>
+                </div>
+              </div>
+            </div>
+      {% endfor %}
+    {% else %}
+      <h3>Корзина пуста.</h3>
+    {% endif %}
+    <div class="Cart-total">
+      <div class="Cart-block Cart-block_total">
+        <strong class="Cart-title">Итого:
+        </strong><span class="Cart-price">{{ cart.get_total_price }}$</span>
+      </div>
+      <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'app_cart:create_order' %}">Оформить заказ</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
