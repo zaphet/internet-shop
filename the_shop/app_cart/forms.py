@@ -1,10 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms.fields import EmailField
-from phone_field import PhoneField
 from django.core.exceptions import ValidationError
-from app_users.models import UserProfile
 
 
 class CerateOrderForm(forms.Form):
